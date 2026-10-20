@@ -8,6 +8,9 @@ export interface Project {
   accent: string;
 }
 
+/** Projeto com link publicado (o único tipo que o portal consegue abrir). */
+export type LinkedProject = Project & { url: string };
+
 export interface ProjectCardHandlers {
   onPreload: () => void;
   onOpen: (trigger: HTMLElement) => void;

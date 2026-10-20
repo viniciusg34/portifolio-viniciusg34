@@ -1,5 +1,5 @@
 import { el } from "../utils/dom";
-import type { Project } from "../types";
+import type { LinkedProject } from "../types";
 
 const MAX_POOL = 4;
 const LOAD_TIMEOUT_MS = 8000;
@@ -47,7 +47,7 @@ export class PortalViewer {
     return this.root.classList.contains("is-open");
   }
 
-  preload(project: Project): void {
+  preload(project: LinkedProject): void {
     if (this.frames.has(project.id)) return;
     this.trimPool();
 
@@ -64,7 +64,7 @@ export class PortalViewer {
     this.frames.set(project.id, frame);
   }
 
-  open(project: Project, trigger: HTMLElement): void {
+  open(project: LinkedProject, trigger: HTMLElement): void {
     this.preload(project);
     this.lastTrigger = trigger;
     this.activeId = project.id;
