@@ -1,0 +1,104 @@
+/* ---------- Navbar flutuante ---------- */
+.app { padding-top: calc(env(safe-area-inset-top, 0px) + 76px); }
+.hero { padding-top: clamp(24px, 6vw, 64px); }
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 96px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.topbar {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding-inline: 12px;
+  pointer-events: none;
+  transition: transform 0.55s var(--ease);
+}
+.topbar.is-hidden { transform: translateY(calc(-100% - 24px)); }
+
+.nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  max-width: 100%;
+  padding: 0.4rem 0.45rem 0.4rem 0.5rem;
+  border-radius: 999px;
+  pointer-events: auto;
+}
+
+.nav__brand { display: flex; align-items: center; gap: 0.65rem; padding-right: 0.5rem; color: var(--text); font-weight: 650; letter-spacing: -0.01em; text-decoration: none; white-space: nowrap; }
+.nav__mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f6bff, #c24fff);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 6px 16px rgba(79, 107, 255, 0.35);
+  transition: transform 0.5s var(--ease);
+}
+.nav__brand:hover .nav__mark { transform: rotate(-8deg) scale(1.08); }
+
+.nav__track { position: relative; display: flex; }
+.nav__links { display: flex; gap: 0.15rem; margin: 0; padding: 0; list-style: none; }
+.nav__link { position: relative; z-index: 1; display: block; padding: 0.55rem 0.95rem; font-size: 0.9rem; color: var(--muted); text-decoration: none; border-radius: 999px; transition: color 0.3s var(--ease); }
+.nav__link:hover, .nav__link.is-active { color: var(--text); }
+.nav__link:focus-visible, .nav__brand:focus-visible, .nav__menu-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.nav__indicator {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--iw, 0);
+  transform: translateX(var(--ix, 0));
+  opacity: 0;
+  border-radius: 999px;
+  background: var(--pill-hover);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 var(--glass-hi);
+  transition: transform 0.55s var(--ease), width 0.55s var(--ease), opacity 0.3s var(--ease);
+}
+
+.nav__actions { gap: 0.25rem; }
+.nav__actions .icon-btn { width: 38px; height: 38px; background: transparent; border-color: transparent; }
+.nav__actions .icon-btn:hover { background: var(--pill-hover); border-color: var(--glass-border); }
+.nav__actions .menu-toggle { display: none; }
+
+/* ---------- Menu mobile ---------- */
+.nav__menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  width: calc(100% - 24px);
+  max-width: 560px;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -10px) scale(0.97);
+  transform-origin: top center;
+  transition: opacity 0.35s var(--ease), transform 0.5s var(--ease), visibility 0s 0.5s;
+}
+.topbar.is-open .nav__menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0) scale(1); transition-delay: 0s; }
+.nav__menu-list { display: grid; gap: 0.25rem; margin: 0 0 0.75rem; padding: 0; list-style: none; }
+.nav__menu-link { display: block; padding: 0.8rem 1rem; color: var(--muted); text-decoration: none; border-radius: 16px; transition: background 0.25s var(--ease), color 0.25s var(--ease); }
+.nav__menu-link:hover, .nav__menu-link.is-active { color: var(--text); background: var(--pill-hover); }
+
+.topbar.is-open .i-menu, .topbar:not(.is-open) .i-close { display: none; }
+.menu-toggle svg { animation: icon-in 0.5s var(--ease); }
+
+@media (min-width: 901px) { .nav__menu { display: none; } }
+
+@media (max-width: 900px) {
+  .nav { width: 100%; max-width: 560px; justify-content: space-between; }
+  .nav__track, .nav__actions .socials { display: none; }
+  .nav__actions .menu-toggle { display: inline-flex; }
+}

@@ -1,0 +1,100 @@
+.portal {
+  --x: 50%;
+  --y: 50%;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.portal.is-visible { visibility: visible; pointer-events: auto; }
+
+.portal__stage {
+  position: absolute;
+  inset: 0;
+  background: #05070f;
+  clip-path: circle(0% at var(--x) var(--y));
+  transition: clip-path var(--portal-duration) var(--ease);
+}
+
+.portal.is-open .portal__stage { clip-path: circle(150% at var(--x) var(--y)); }
+
+.portal__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.06);
+  transition: opacity 500ms var(--ease) 250ms, transform var(--portal-duration) var(--ease);
+}
+
+.portal__frame.is-active { opacity: 1; pointer-events: auto; }
+.portal.is-open .portal__frame.is-active { transform: scale(1); }
+
+.portal__ring {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 40px rgba(122, 162, 255, 0.9), inset 0 0 30px rgba(122, 162, 255, 0.6);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.portal.is-open .portal__ring { animation: portal-ring var(--portal-duration) var(--ease) forwards; }
+
+@keyframes portal-ring {
+  0% { opacity: 1; transform: scale(0); }
+  75% { opacity: 0.7; }
+  100% { opacity: 0; transform: scale(60); }
+}
+
+.portal__bar {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.6rem 0.5rem 1.25rem;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translate(-50%, -140%);
+  transition: transform 600ms var(--ease), opacity 400ms var(--ease);
+}
+
+.portal.is-open .portal__bar { opacity: 1; transform: translate(-50%, 0); transition-delay: 450ms; }
+.portal__title { font-weight: 600; font-size: 0.9rem; }
+
+.portal__status {
+  position: absolute;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  left: 50%;
+  max-width: calc(100% - 32px);
+  padding: 0.7rem 1.2rem;
+  font-size: 0.875rem;
+  text-align: center;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+  pointer-events: none;
+}
+
+.portal__status.is-visible { opacity: 1; transform: translate(-50%, 0); }
+
+.is-portal-open .app { transform: scale(0.94); filter: blur(8px); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --portal-duration: 1ms; }
+  .portal__ring { display: none; }
+}

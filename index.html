@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Vinícius Gomes de Cerqueira: desenvolvedor de software focado em backend com Kotlin e Java. Rio de Janeiro, RJ." />
+    <meta name="theme-color" content="#0b1020" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t !== "light" && t !== "dark") t = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+          document.documentElement.dataset.theme = t;
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute("content", t === "light" ? "#eef2ff" : "#0b1020");
+        } catch (e) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
+    <title>Vinícius Gomes de Cerqueira | Desenvolvedor de Software</title>
+  </head>
+  <body>
+    <div id="app" class="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

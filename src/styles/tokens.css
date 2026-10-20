@@ -1,0 +1,52 @@
+:root {
+  color-scheme: dark;
+  --bg-1: #0b1020;
+  --bg-2: #1b1140;
+  --text: #f5f7ff;
+  --muted: rgba(245, 247, 255, 0.68);
+  --accent: #7aa2ff;
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.26);
+  --glass-hi: rgba(255, 255, 255, 0.35);
+  --glass-lo: rgba(255, 255, 255, 0.06);
+  --glass-shadow: rgba(0, 0, 0, 0.28);
+  --pill-bg: rgba(255, 255, 255, 0.14);
+  --pill-hover: rgba(255, 255, 255, 0.24);
+  --card-hover: rgba(255, 255, 255, 0.18);
+  --chip-bg: rgba(255, 255, 255, 0.12);
+  --glow: rgba(255, 255, 255, 0.16);
+  --blob-1: #4f6bff;
+  --blob-2: #c24fff;
+  --blob-3: #2ec4b6;
+  --orb-o: 0.55;
+  --shape-bg: rgba(255, 255, 255, 0.14);
+  --glass-blur: 24px;
+  --radius: 28px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --portal-duration: 900ms;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, system-ui, sans-serif;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg-1: #eef2ff;
+  --bg-2: #dfe6ff;
+  --text: #12162b;
+  --muted: rgba(18, 22, 43, 0.68);
+  --accent: #3b5bdb;
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-hi: rgba(255, 255, 255, 0.95);
+  --glass-lo: rgba(60, 75, 160, 0.06);
+  --glass-shadow: rgba(60, 75, 160, 0.18);
+  --pill-bg: rgba(255, 255, 255, 0.65);
+  --pill-hover: rgba(255, 255, 255, 0.95);
+  --card-hover: rgba(255, 255, 255, 0.78);
+  --chip-bg: rgba(59, 91, 219, 0.1);
+  --glow: rgba(59, 91, 219, 0.14);
+  --blob-1: #8aa2ff;
+  --blob-2: #e0a3ff;
+  --blob-3: #7ef0c6;
+  --orb-o: 0.6;
+  --shape-bg: rgba(255, 255, 255, 0.7);
+}
